@@ -7,11 +7,11 @@ namespace DrawAirplan
 {
     class DrawPorthole
     {
-        int ten = 10;
-        int twenty = 20;
-        int thirty = 30;
-        int step = 7;
-        int maxStep = 17;       
+        private int ten = 10;
+        private int twenty = 20;
+        private int thirty = 30;
+        private int step = 7;
+        private int maxStep = 17;       
 
         private Porthole windowСount;
 

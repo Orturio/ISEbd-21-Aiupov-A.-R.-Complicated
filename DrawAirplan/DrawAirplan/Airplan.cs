@@ -29,9 +29,7 @@ namespace DrawAirplan
 
         public Color DopColor { private set; get; }
 
-        public bool Сhassis { private set; get; }
-
-        //public bool LowerWindows { private set; get; }
+        public bool Сhassis { private set; get; }        
 
         DrawPorthole Portholes = new DrawPorthole();
 
