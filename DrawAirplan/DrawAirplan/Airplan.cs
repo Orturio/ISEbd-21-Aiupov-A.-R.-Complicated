@@ -34,7 +34,7 @@ namespace DrawAirplan
         DrawPorthole Portholes = new DrawPorthole();
 
         public Airbus(int maxSpeed, float weight, Color mainColor, Color dopColor,
-            bool chassis, int windowCount)
+bool chassis, int windowCount)
         {
             MaxSpeed = maxSpeed;
             Weight = weight;
@@ -158,7 +158,6 @@ namespace DrawAirplan
             g.DrawRectangle(pen, _startPosX + 205, _startPosY, 5, 5);
 
             
-
             // рисую боковой спойлер самолёта
             
             g.DrawRectangle(pen, _startPosX + 10, _startPosY + 2, 10, 10);

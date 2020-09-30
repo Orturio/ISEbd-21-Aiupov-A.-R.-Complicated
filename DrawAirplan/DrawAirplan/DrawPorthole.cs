@@ -7,9 +7,7 @@ namespace DrawAirplan
 {
     class DrawPorthole
     {
-        private int ten = 10;
-        private int twenty = 20;
-        private int thirty = 30;
+        private int ten = 10;      
         private int step = 7;
         private int maxStep = 17;       
 
@@ -34,86 +32,77 @@ namespace DrawAirplan
             }
         }
 
+        public void DrawTenPortholes(Graphics g, Color dopColor, float _startPosX, float _startPosY)
+        {
+            Pen pen = new Pen(Color.Black);
+            Brush dopColorBrush = new SolidBrush(dopColor);
+
+            for (int i = 0; i < ten; i++)
+            {
+                g.DrawEllipse(pen, _startPosX + step * ten, _startPosY - 4, 3, 3);
+                g.FillEllipse(dopColorBrush, _startPosX + step * ten, _startPosY - 4, 3, 3);
+                step++;
+                if (step == maxStep)
+                {
+                    step = 7;
+                }
+            }
+
+            step = 7;
+        }
+
+        public void DrawTwentyPortholes(Graphics g, Color dopColor, float _startPosX, float _startPosY) 
+        {
+            Pen pen = new Pen(Color.Black);
+            Brush dopColorBrush = new SolidBrush(dopColor);
+
+            for (int i = 0; i < ten; i++)
+            {
+                g.DrawEllipse(pen, _startPosX + step * ten, _startPosY + 5, 3, 3);
+                g.FillEllipse(dopColorBrush, _startPosX + step * ten, _startPosY + 5, 3, 3);
+                step++;
+                if (step == maxStep)
+                {
+                    step = 7;
+                }
+            }
+
+            step = 7;
+        }
+
+        public void DrawThirtyPortholes(Graphics g, Color dopColor, float _startPosX, float _startPosY)
+        {
+            Pen pen = new Pen(Color.Black);
+            Brush dopColorBrush = new SolidBrush(dopColor);
+            step = 12;
+
+            for (int i = 0; i <= 5; i++) 
+            {
+                g.DrawEllipse(pen, _startPosX + step * ten, _startPosY + 15, 3, 3);
+                g.FillEllipse(dopColorBrush, _startPosX + step * ten, _startPosY + 15, 3, 3);
+                step++;
+            }
+
+            step = 7;
+        }
+
         public void DrawPortholes(Graphics g,Color dopColor ,float _startPosX, float _startPosY)
         {
             Pen pen = new Pen(Color.Black);
             Brush dopColorBrush = new SolidBrush(dopColor);
 
-            if (windowСount == Porthole.ten) 
-            {                              
-                for (int i = 0; i < ten; i++)
-                {
-                    g.DrawEllipse(pen, _startPosX + step * ten, _startPosY - 4, 3, 3);
-                    g.FillEllipse(dopColorBrush, _startPosX + step * ten, _startPosY - 4, 3, 3);
-                    step++;
-                }
-
-                step = 7;
-            }
-
-            if (windowСount == Porthole.twenty)
-            {                
-                for (int i = 0; i < twenty; i++)
-                {
-                    if (i < 10)
-                    {
-                        g.DrawEllipse(pen, _startPosX + step * ten, _startPosY - 4, 3, 3);
-                        g.FillEllipse(dopColorBrush, _startPosX + step * ten, _startPosY - 4, 3, 3);
-                        step++;
-                        if (step == maxStep)
-                        {
-                            step = 7;
-                        }
-                    }
-
-                    else 
-                    {
-                        g.DrawEllipse(pen, _startPosX + step * ten, _startPosY + 5, 3, 3);
-                        g.FillEllipse(dopColorBrush, _startPosX + step * ten, _startPosY + 5, 3, 3);
-                        step++;
-                    }                   
-                }
-
-                step = 7;
-            }
-
-            if (windowСount == Porthole.thirty) 
+            if (windowСount >= Porthole.ten) 
             {
-                for (int i = 0; i < thirty; i++)
+                DrawTenPortholes(g, dopColor, _startPosX, _startPosY);
+                if (windowСount >= Porthole.twenty)
                 {
-                    if (i < 10)
+                    DrawTwentyPortholes(g, dopColor, _startPosX, _startPosY);
+                    if (windowСount == Porthole.thirty) 
                     {
-                        g.DrawEllipse(pen, _startPosX + step * ten, _startPosY - 4, 3, 3);
-                        g.FillEllipse(dopColorBrush, _startPosX + step * ten, _startPosY - 4, 3, 3);
-                        step++;
-                        if (step == maxStep)
-                        {
-                            step = 7;
-                        }
-                    }
-
-                    else if (i < 20)
-                    {
-                        g.DrawEllipse(pen, _startPosX + step * ten, _startPosY + 5, 3, 3);
-                        g.FillEllipse(dopColorBrush, _startPosX + step * ten, _startPosY + 5, 3, 3);
-                        step++;
-                        if (step == maxStep)
-                        {
-                            step = 12;
-                        }
-                    }
-
-                    else if (i < 25)
-                    {
-                        g.DrawEllipse(pen, _startPosX + step * ten, _startPosY + 15, 3, 3);
-                        g.FillEllipse(dopColorBrush, _startPosX + step * ten, _startPosY + 15, 3, 3);
-                        step++;                      
+                        DrawThirtyPortholes(g, dopColor, _startPosX, _startPosY);
                     }
                 }
-
-                step = 7;
-            }
-        }
-        
+            }          
+        }  
     }
 }

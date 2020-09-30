@@ -60,6 +60,5 @@ namespace DrawAirplan
             }
             Draw();
         }
-
     }
 }
