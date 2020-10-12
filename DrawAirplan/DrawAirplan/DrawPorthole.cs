@@ -5,29 +5,46 @@ using System.Drawing;
 
 namespace DrawAirplan
 {
-    class DrawPorthole
+    public class DrawPorthole : IDop
     {
         private int ten = 10;      
         private int step = 7;
         private int maxStep = 17;       
 
-        private Porthole windowСount;
+        private Elements windowСount;
 
-        public int WindowСount 
+        private Elements windowForm;
+
+        public int SetCount 
         {
             set
             {
                 if (value == 10)
                 {
-                    windowСount = Porthole.ten;
+                    windowСount = Elements.ten;
                 }
                 if (value == 20)
                 {
-                    windowСount = Porthole.twenty;
+                    windowСount = Elements.twenty;
                 }
                 if (value == 30)
                 {
-                    windowСount = Porthole.thirty;
+                    windowСount = Elements.thirty;
+                }
+            }
+        }
+
+        public int SetForm
+        {
+            set
+            {
+                if (value == 0)
+                {
+                    windowForm = Elements.Ellipse;
+                }
+                if (value == 1)
+                {
+                    windowForm = Elements.Rectangle;
                 }
             }
         }
@@ -39,9 +56,20 @@ namespace DrawAirplan
 
             for (int i = 0; i < ten; i++)
             {
-                g.DrawEllipse(pen, _startPosX + step * ten, _startPosY - 4, 3, 3);
-                g.FillEllipse(dopColorBrush, _startPosX + step * ten, _startPosY - 4, 3, 3);
+                if (windowForm == Elements.Ellipse)
+                {
+                    g.DrawEllipse(pen, _startPosX + step * ten, _startPosY - 4, 3, 3);
+                    g.FillEllipse(dopColorBrush, _startPosX + step * ten, _startPosY - 4, 3, 3);
+                }
+
+                else if (windowForm == Elements.Rectangle)
+                {
+                    g.DrawRectangle(pen, _startPosX + step * ten, _startPosY - 4, 3, 3);
+                    g.FillRectangle(dopColorBrush, _startPosX + step * ten, _startPosY - 4, 3, 3);
+                }
+
                 step++;
+
                 if (step == maxStep)
                 {
                     step = 7;
@@ -58,9 +86,20 @@ namespace DrawAirplan
 
             for (int i = 0; i < ten; i++)
             {
-                g.DrawEllipse(pen, _startPosX + step * ten, _startPosY + 5, 3, 3);
-                g.FillEllipse(dopColorBrush, _startPosX + step * ten, _startPosY + 5, 3, 3);
+                if (windowForm == Elements.Ellipse) 
+                {
+                    g.DrawEllipse(pen, _startPosX + step * ten, _startPosY + 5, 3, 3);
+                    g.FillEllipse(dopColorBrush, _startPosX + step * ten, _startPosY + 5, 3, 3);
+                }
+                
+                else if (windowForm == Elements.Rectangle)
+                {
+                    g.DrawRectangle(pen, _startPosX + step * ten, _startPosY + 5, 3, 3);
+                    g.FillRectangle(dopColorBrush, _startPosX + step * ten, _startPosY + 5, 3, 3);
+                }
+
                 step++;
+
                 if (step == maxStep)
                 {
                     step = 7;
@@ -78,26 +117,35 @@ namespace DrawAirplan
 
             for (int i = 0; i <= 5; i++) 
             {
-                g.DrawEllipse(pen, _startPosX + step * ten, _startPosY + 15, 3, 3);
-                g.FillEllipse(dopColorBrush, _startPosX + step * ten, _startPosY + 15, 3, 3);
+                if (windowForm == Elements.Ellipse)
+                {
+                    g.DrawEllipse(pen, _startPosX + step * ten, _startPosY + 15, 3, 3);
+                    g.FillEllipse(dopColorBrush, _startPosX + step * ten, _startPosY + 15, 3, 3);
+                }
+
+                else if (windowForm == Elements.Rectangle)
+                {
+                    g.DrawRectangle(pen, _startPosX + step * ten, _startPosY + 15, 3, 3);
+                    g.FillEllipse(dopColorBrush, _startPosX + step * ten, _startPosY + 15, 3, 3);
+                }
                 step++;
             }
 
             step = 7;
         }
 
-        public void DrawPortholes(Graphics g,Color dopColor ,float _startPosX, float _startPosY)
+        public void DrawElements(Graphics g,Color dopColor ,float _startPosX, float _startPosY)
         {
             Pen pen = new Pen(Color.Black);
             Brush dopColorBrush = new SolidBrush(dopColor);
 
-            if (windowСount >= Porthole.ten) 
+            if (windowСount >= Elements.ten) 
             {
                 DrawTenPortholes(g, dopColor, _startPosX, _startPosY);
-                if (windowСount >= Porthole.twenty)
+                if (windowСount >= Elements.twenty)
                 {
                     DrawTwentyPortholes(g, dopColor, _startPosX, _startPosY);
-                    if (windowСount == Porthole.thirty) 
+                    if (windowСount == Elements.thirty) 
                     {
                         DrawThirtyPortholes(g, dopColor, _startPosX, _startPosY);
                     }

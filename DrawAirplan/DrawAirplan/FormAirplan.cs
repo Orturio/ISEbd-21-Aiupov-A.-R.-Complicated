@@ -1,41 +1,48 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DrawAirplan
 {
     public partial class FormAirplan : Form
     {
-        private Airbus airplan;
+        private ITransport aircraft;
 
         public FormAirplan()
         {
             InitializeComponent();
             comboBoxWindowCount.Items.AddRange(new string[] { "10", "20", "30" });
+            comboBoxDoorsCount.Items.AddRange(new string[] { "2", "4" });
         }
 
         private void Draw()
         {
-            Bitmap bmp = new Bitmap(pictureBoxAirplans.Width, pictureBoxAirplans.Height);
+            Bitmap bmp = new Bitmap(pictureBoxAircraft.Width, pictureBoxAircraft.Height);
             Graphics gr = Graphics.FromImage(bmp);
-            airplan.DrawTransport(gr);
-            pictureBoxAirplans.Image = bmp;
-        }    
+            aircraft.DrawTransport(gr);
+            pictureBoxAircraft.Image = bmp;
+        }
 
-        private void buttonCreate_Click(object sender, EventArgs e)
+        private void buttonCreateAircraft_Click(object sender, EventArgs e)
+        {
+            Random rnd = new Random();           
+            aircraft = new Aircraft(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.LightBlue, true, true);
+            aircraft.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxAircraft.Width,
+pictureBoxAircraft.Height);
+            Draw();
+        }
+
+        private void buttonCreateAirbus_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
             int windowCount = Convert.ToInt32(comboBoxWindowCount.SelectedItem);
-            airplan = new Airbus(rnd.Next(250, 450), rnd.Next(1000, 2000), Color.White,
-            Color.Blue, true, windowCount);
-            airplan.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxAirplans.Width,
-            pictureBoxAirplans.Height);
+            int doorCount = Convert.ToInt32(comboBoxDoorsCount.SelectedItem);
+            int doorForm = Convert.ToInt32(buttonDoorEllipseForm.Enabled ? buttonDoorEllipseForm.Text: (buttonDoorRectangleForm.Enabled ?
+buttonDoorRectangleForm.Text: "0"));
+            aircraft = new Airbus(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.LightBlue,
+Color.Black, true, windowCount, checkedListBoxForm.SelectedIndex, doorCount, doorForm);
+            aircraft.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxAircraft.Width,
+pictureBoxAircraft.Height);
             Draw();
         }
 
@@ -46,19 +53,31 @@ namespace DrawAirplan
             switch (name)
             {
                 case "buttonUp":
-                    airplan.MoveTransport(Direction.Up);
+                    aircraft.MoveTransport(Direction.Up);
                     break;
                 case "buttonDown":
-                    airplan.MoveTransport(Direction.Down);
+                    aircraft.MoveTransport(Direction.Down);
                     break;
                 case "buttonLeft":
-                    airplan.MoveTransport(Direction.Left);
+                    aircraft.MoveTransport(Direction.Left);
                     break;
                 case "buttonRight":
-                    airplan.MoveTransport(Direction.Right);
+                    aircraft.MoveTransport(Direction.Right);
                     break;
             }
             Draw();
+        }
+
+        private void buttonDoorForm_Click(object sender, EventArgs e)
+        {
+            if (sender == buttonDoorEllipseForm) 
+            {
+                buttonDoorRectangleForm.Enabled = false;
+            }
+            if (sender == buttonDoorRectangleForm)
+            {
+                buttonDoorEllipseForm.Enabled = false;
+            }
         }
     }
 }

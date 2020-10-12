@@ -6,12 +6,20 @@ using System.Threading.Tasks;
 
 namespace DrawAirplan
 {
-    public enum Porthole
+    public enum Elements
     { 
+        two = 2,
+
+        four = 4,
+
         ten = 10,
 
         twenty = 20,
 
-        thirty = 30
+        thirty = 30,
+
+        Ellipse = 0,
+
+        Rectangle = 1
     }
 }
