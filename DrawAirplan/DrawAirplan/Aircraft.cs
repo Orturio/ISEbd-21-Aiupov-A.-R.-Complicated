@@ -35,11 +35,13 @@ namespace DrawAirplan
         public override void MoveTransport(Direction direction)
         {
             float step = MaxSpeed * 100 / Weight;
+            int border = 2;
+            int upperBorder = 4;
             switch (direction)
-            {
+            {               
                 //вправо
                 case Direction.Right:
-                    if (_startPosX + step < _pictureWidth - airplanWidth)
+                    if (_startPosX + step < _pictureWidth - airplanWidth * border)
                     {
                         _startPosX += step;
                     }
@@ -53,14 +55,14 @@ namespace DrawAirplan
                     break;
                 //вверх
                 case Direction.Up:
-                    if (_startPosY + step > airplanHeight)
+                    if (_startPosY + step > airplanHeight / upperBorder)
                     {
                         _startPosY -= step;
                     }
                     break;
                 //вниз
                 case Direction.Down:
-                    if (_startPosY + step < _pictureHeight - airplanHeight)
+                    if (_startPosY + step < _pictureHeight - airplanHeight / border)
                     {
                         _startPosY += step;
                     }

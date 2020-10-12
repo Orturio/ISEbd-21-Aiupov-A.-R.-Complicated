@@ -44,6 +44,9 @@ Color.Black, true, windowCount, checkedListBoxForm.SelectedIndex, doorCount, doo
             aircraft.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxAircraft.Width,
 pictureBoxAircraft.Height);
             Draw();
+
+            buttonDoorEllipseForm.Enabled = true;
+            buttonDoorRectangleForm.Enabled = true;
         }
 
         private void buttonMove_Click(object sender, EventArgs e)
@@ -78,6 +81,6 @@ pictureBoxAircraft.Height);
             {
                 buttonDoorEllipseForm.Enabled = false;
             }
-        }
+        }        
     }
 }
