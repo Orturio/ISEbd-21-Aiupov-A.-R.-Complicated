@@ -6,22 +6,36 @@ namespace DrawAirplan
     {
         public Color DopColor { private set; get; }
 
-        public bool AirplanChassis { private set; get; }            
+        public bool AirplanChassis { private set; get; }
 
-        IDop Portholes = new DrawPorthole();
-        IDop Doors = new DrawDoors();
-        
+        public int WindowForm { private set; get; }
+
+        IDop Portholes;
+
         public Airbus(int maxSpeed, float weight, Color mainColor, Color dopColor,
-bool airplanChassis, int windowCount, int windowForm, int doorCount, int doorForm) :
-            base(maxSpeed, weight, mainColor, 220, 100, false, false)
+bool airplanChassis, int windowCount, int windowForm) :
+            base(maxSpeed, weight, mainColor, 220, 100, false)
         {
             DopColor = dopColor;
-            AirplanChassis = airplanChassis;
-            Portholes.SetCount = windowCount;
-            Portholes.SetForm = windowForm;
-            Doors.SetCount = doorCount;
-            Doors.SetForm = doorForm;
+            AirplanChassis = airplanChassis;          
+            WindowForm = windowForm;
+
+            if (WindowForm == 0)
+            {
+                Portholes = new PortholeCircle(windowCount);
+                
+            }
+            else if (WindowForm == 1)
+            {
+                Portholes = new PortholeRectangle(windowCount);
+            }
+            else 
+            {
+                Portholes = new PortholeTriangle(windowCount);                
+            }
         }
+
+       
 
         public override void DrawTransport(Graphics g)
         {
@@ -39,8 +53,7 @@ bool airplanChassis, int windowCount, int windowForm, int doorCount, int doorFor
                 g.FillEllipse(dopBrush, _startPosX + 175, _startPosY + 30, 10, 10);
             }
            
-            Portholes.DrawElements(g, DopColor, _startPosX, _startPosY);
-            Doors.DrawElements(g, DopColor, _startPosX, _startPosY);
+            Portholes.DrawElements(g, DopColor, _startPosX, _startPosY);          
         }
     }
 }

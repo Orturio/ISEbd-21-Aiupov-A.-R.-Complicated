@@ -32,11 +32,6 @@
             this.comboBoxWindowCount = new System.Windows.Forms.ComboBox();
             this.buttonCreateAirbus = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.buttonDoorEllipseForm = new System.Windows.Forms.Button();
-            this.buttonDoorRectangleForm = new System.Windows.Forms.Button();
-            this.comboBoxDoorsCount = new System.Windows.Forms.ComboBox();
-            this.labelDoorsCount = new System.Windows.Forms.Label();
-            this.labelDoorsForm = new System.Windows.Forms.Label();
             this.checkedListBoxForm = new System.Windows.Forms.CheckedListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.labelCountPortholes = new System.Windows.Forms.Label();
@@ -79,12 +74,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.buttonDoorEllipseForm);
             this.groupBox1.Controls.Add(this.buttonCreateAirbus);
-            this.groupBox1.Controls.Add(this.buttonDoorRectangleForm);
-            this.groupBox1.Controls.Add(this.comboBoxDoorsCount);
-            this.groupBox1.Controls.Add(this.labelDoorsCount);
-            this.groupBox1.Controls.Add(this.labelDoorsForm);
             this.groupBox1.Controls.Add(this.checkedListBoxForm);
             this.groupBox1.Controls.Add(this.buttonCreateAircraft);
             this.groupBox1.Controls.Add(this.label1);
@@ -92,70 +82,21 @@
             this.groupBox1.Controls.Add(this.comboBoxWindowCount);
             this.groupBox1.Location = new System.Drawing.Point(639, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(233, 223);
+            this.groupBox1.Size = new System.Drawing.Size(233, 148);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "параметры самолёта";
-            // 
-            // buttonDoorEllipseForm
-            // 
-            this.buttonDoorEllipseForm.BackgroundImage = global::DrawAirplan.Properties.Resources.iconfinder_record_round_circle_dot_2203520;
-            this.buttonDoorEllipseForm.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.buttonDoorEllipseForm.Location = new System.Drawing.Point(161, 182);
-            this.buttonDoorEllipseForm.Name = "buttonDoorEllipseForm";
-            this.buttonDoorEllipseForm.Size = new System.Drawing.Size(42, 27);
-            this.buttonDoorEllipseForm.TabIndex = 14;
-            this.buttonDoorEllipseForm.Text = "0";
-            this.buttonDoorEllipseForm.UseVisualStyleBackColor = true;
-            this.buttonDoorEllipseForm.Click += new System.EventHandler(this.buttonDoorForm_Click);
-            // 
-            // buttonDoorRectangleForm
-            // 
-            this.buttonDoorRectangleForm.BackgroundImage = global::DrawAirplan.Properties.Resources.square;
-            this.buttonDoorRectangleForm.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.buttonDoorRectangleForm.Location = new System.Drawing.Point(117, 182);
-            this.buttonDoorRectangleForm.Name = "buttonDoorRectangleForm";
-            this.buttonDoorRectangleForm.Size = new System.Drawing.Size(38, 27);
-            this.buttonDoorRectangleForm.TabIndex = 13;
-            this.buttonDoorRectangleForm.Text = "1";
-            this.buttonDoorRectangleForm.UseVisualStyleBackColor = true;
-            this.buttonDoorRectangleForm.Click += new System.EventHandler(this.buttonDoorForm_Click);
-            // 
-            // comboBoxDoorsCount
-            // 
-            this.comboBoxDoorsCount.FormattingEnabled = true;
-            this.comboBoxDoorsCount.Location = new System.Drawing.Point(138, 152);
-            this.comboBoxDoorsCount.Name = "comboBoxDoorsCount";
-            this.comboBoxDoorsCount.Size = new System.Drawing.Size(65, 21);
-            this.comboBoxDoorsCount.TabIndex = 12;
-            // 
-            // labelDoorsCount
-            // 
-            this.labelDoorsCount.AutoSize = true;
-            this.labelDoorsCount.Location = new System.Drawing.Point(6, 155);
-            this.labelDoorsCount.Name = "labelDoorsCount";
-            this.labelDoorsCount.Size = new System.Drawing.Size(83, 13);
-            this.labelDoorsCount.TabIndex = 11;
-            this.labelDoorsCount.Text = "Кол-во дверей:";
-            // 
-            // labelDoorsForm
-            // 
-            this.labelDoorsForm.AutoSize = true;
-            this.labelDoorsForm.Location = new System.Drawing.Point(6, 189);
-            this.labelDoorsForm.Name = "labelDoorsForm";
-            this.labelDoorsForm.Size = new System.Drawing.Size(86, 13);
-            this.labelDoorsForm.TabIndex = 10;
-            this.labelDoorsForm.Text = "Форма дверей:";
             // 
             // checkedListBoxForm
             // 
             this.checkedListBoxForm.FormattingEnabled = true;
             this.checkedListBoxForm.Items.AddRange(new object[] {
             "Круг",
-            "Квадрат"});
+            "Квадрат",
+            "Треугольник"});
             this.checkedListBoxForm.Location = new System.Drawing.Point(138, 106);
             this.checkedListBoxForm.Name = "checkedListBoxForm";
-            this.checkedListBoxForm.Size = new System.Drawing.Size(64, 34);
+            this.checkedListBoxForm.Size = new System.Drawing.Size(89, 34);
             this.checkedListBoxForm.TabIndex = 9;
             // 
             // label1
@@ -268,11 +209,6 @@
         private System.Windows.Forms.Label labelCountPortholes;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckedListBox checkedListBoxForm;
-        private System.Windows.Forms.Label labelDoorsForm;
-        private System.Windows.Forms.ComboBox comboBoxDoorsCount;
-        private System.Windows.Forms.Label labelDoorsCount;
-        private System.Windows.Forms.Button buttonDoorEllipseForm;
-        private System.Windows.Forms.Button buttonDoorRectangleForm;
     }
 }
 

@@ -8,27 +8,23 @@ namespace DrawAirplan
 
         protected readonly int airplanHeight = 100;
 
-        public bool Door { private set; get; }
-
         public bool Window {private set; get;}
 
-        public Aircraft(int maxSpeed, float weight, Color mainColor, bool door, bool window)
+        public Aircraft(int maxSpeed, float weight, Color mainColor, bool window)
         {
             MaxSpeed = maxSpeed;
             Weight = weight;
             MainColor = mainColor;
-            Door = door;
             Window = window;
         }
 
-        protected Aircraft(int maxSpeed, float weight, Color mainColor, int airplanHeight, int airplanWidth, bool door, bool window)
+        protected Aircraft(int maxSpeed, float weight, Color mainColor, int airplanHeight, int airplanWidth,  bool window)
         {
             MaxSpeed = maxSpeed;
             Weight = weight;
             MainColor = mainColor;
             this.airplanWidth = airplanWidth;
             this.airplanHeight = airplanHeight;
-            Door = door;
             Window = window;
         }
 
@@ -113,13 +109,11 @@ namespace DrawAirplan
             g.DrawRectangle(pen, _startPosX + 60, _startPosY + 15, 30, 20);
 
             // рисую двери
-            if (Door)
-            {
-                g.DrawRectangle(pen, _startPosX + 35, _startPosY + 13, 8, 13);
-                g.DrawRectangle(pen, _startPosX + 50, _startPosY - 6, 8, 13);
-                g.DrawRectangle(pen, _startPosX + 170, _startPosY - 6, 8, 13);
-                g.DrawRectangle(pen, _startPosX + 175, _startPosY + 13, 8, 13);
-            }
+            
+            g.DrawRectangle(pen, _startPosX + 35, _startPosY + 13, 8, 13);
+            g.DrawRectangle(pen, _startPosX + 50, _startPosY - 6, 8, 13);
+            g.DrawRectangle(pen, _startPosX + 170, _startPosY - 6, 8, 13);
+            g.DrawRectangle(pen, _startPosX + 175, _startPosY + 13, 8, 13);           
 
             if (Window) 
             {

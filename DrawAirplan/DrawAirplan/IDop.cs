@@ -6,8 +6,6 @@ namespace DrawAirplan
     {
         int SetCount{set; }
 
-        int SetForm {set; }
-
         void DrawElements(Graphics g, Color dopColor, float _startPosX, float _startPosY);
     }
 }

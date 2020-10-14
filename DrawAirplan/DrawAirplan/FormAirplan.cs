@@ -11,8 +11,7 @@ namespace DrawAirplan
         public FormAirplan()
         {
             InitializeComponent();
-            comboBoxWindowCount.Items.AddRange(new string[] { "10", "20", "30" });
-            comboBoxDoorsCount.Items.AddRange(new string[] { "2", "4" });
+            comboBoxWindowCount.Items.AddRange(new string[] { "10", "20", "30" });           
         }
 
         private void Draw()
@@ -26,7 +25,7 @@ namespace DrawAirplan
         private void buttonCreateAircraft_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();           
-            aircraft = new Aircraft(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.LightBlue, true, true);
+            aircraft = new Aircraft(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.LightBlue, true);
             aircraft.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxAircraft.Width,
 pictureBoxAircraft.Height);
             Draw();
@@ -35,18 +34,12 @@ pictureBoxAircraft.Height);
         private void buttonCreateAirbus_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
-            int windowCount = Convert.ToInt32(comboBoxWindowCount.SelectedItem);
-            int doorCount = Convert.ToInt32(comboBoxDoorsCount.SelectedItem);
-            int doorForm = Convert.ToInt32(buttonDoorEllipseForm.Enabled ? buttonDoorEllipseForm.Text: (buttonDoorRectangleForm.Enabled ?
-buttonDoorRectangleForm.Text: "0"));
+            int windowCount = Convert.ToInt32(comboBoxWindowCount.SelectedItem);          
             aircraft = new Airbus(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.LightBlue,
-Color.Black, true, windowCount, checkedListBoxForm.SelectedIndex, doorCount, doorForm);
+Color.Black, true, windowCount, checkedListBoxForm.SelectedIndex);
             aircraft.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxAircraft.Width,
 pictureBoxAircraft.Height);
-            Draw();
-
-            buttonDoorEllipseForm.Enabled = true;
-            buttonDoorRectangleForm.Enabled = true;
+            Draw();            
         }
 
         private void buttonMove_Click(object sender, EventArgs e)
@@ -69,18 +62,6 @@ pictureBoxAircraft.Height);
                     break;
             }
             Draw();
-        }
-
-        private void buttonDoorForm_Click(object sender, EventArgs e)
-        {
-            if (sender == buttonDoorEllipseForm) 
-            {
-                buttonDoorRectangleForm.Enabled = false;
-            }
-            if (sender == buttonDoorRectangleForm)
-            {
-                buttonDoorEllipseForm.Enabled = false;
-            }
-        }        
+        }    
     }
 }
