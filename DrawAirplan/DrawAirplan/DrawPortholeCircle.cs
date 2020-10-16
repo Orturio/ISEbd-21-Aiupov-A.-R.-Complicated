@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace DrawAirplan
 {
-    class PortholeRectangle : IDop
+    class DrawPortholeCircle : IDop
     {
         private int ten = 10;
         private int step = 7;
@@ -15,8 +15,7 @@ namespace DrawAirplan
 
         private Elements windowСount;
 
-        public PortholeRectangle(int windowCount) 
-        {
+        public DrawPortholeCircle(int windowCount) {
             SetCount = windowCount;
         }
 
@@ -45,11 +44,10 @@ namespace DrawAirplan
             Brush dopColorBrush = new SolidBrush(dopColor);
 
             for (int i = 0; i < ten; i++)
-            {
-
-                g.DrawRectangle(pen, _startPosX + step * ten, _startPosY - 4, 3, 3);
-                g.FillRectangle(dopColorBrush, _startPosX + step * ten, _startPosY - 4, 3, 3);
-
+            {               
+                g.DrawEllipse(pen, _startPosX + step * ten, _startPosY - 4, 3, 3);
+                g.FillEllipse(dopColorBrush, _startPosX + step * ten, _startPosY - 4, 3, 3);
+                
                 step++;
 
                 if (step == maxStep)
@@ -68,10 +66,10 @@ namespace DrawAirplan
 
             for (int i = 0; i < ten; i++)
             {
-
-                g.DrawRectangle(pen, _startPosX + step * ten, _startPosY + 5, 3, 3);
-                g.FillRectangle(dopColorBrush, _startPosX + step * ten, _startPosY + 5, 3, 3);
-
+                
+                g.DrawEllipse(pen, _startPosX + step * ten, _startPosY + 5, 3, 3);
+                g.FillEllipse(dopColorBrush, _startPosX + step * ten, _startPosY + 5, 3, 3);
+                              
                 step++;
 
                 if (step == maxStep)
@@ -90,11 +88,9 @@ namespace DrawAirplan
             step = 12;
 
             for (int i = 0; i <= 5; i++)
-            {
-
-                g.DrawRectangle(pen, _startPosX + step * ten, _startPosY + 15, 3, 3);
-                g.FillEllipse(dopColorBrush, _startPosX + step * ten, _startPosY + 15, 3, 3);
-
+            {               
+                g.DrawEllipse(pen, _startPosX + step * ten, _startPosY + 15, 3, 3);
+                g.FillEllipse(dopColorBrush, _startPosX + step * ten, _startPosY + 15, 3, 3);                                              
                 step++;
             }
 

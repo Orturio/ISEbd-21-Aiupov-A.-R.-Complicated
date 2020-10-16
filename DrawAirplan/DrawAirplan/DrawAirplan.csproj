@@ -58,9 +58,9 @@
     <Compile Include="FormAirplan.Designer.cs">
       <DependentUpon>FormAirplan.cs</DependentUpon>
     </Compile>
-    <Compile Include="PortholeCircle.cs" />
-    <Compile Include="PortholeRectangle.cs" />
-    <Compile Include="PortholeTriangle.cs" />
+    <Compile Include="DrawPortholeCircle.cs" />
+    <Compile Include="DrawPortholeRectangle.cs" />
+    <Compile Include="DrawPortholeTriangle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vehicle.cs" />

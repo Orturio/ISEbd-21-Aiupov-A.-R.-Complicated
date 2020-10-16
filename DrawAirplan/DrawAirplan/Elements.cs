@@ -16,12 +16,6 @@ namespace DrawAirplan
 
         twenty = 20,
 
-        thirty = 30,
-
-        Ellipse = 0,
-
-        Rectangle = 1,
-
-        Triangle = 2
+        thirty = 30
     }
 }

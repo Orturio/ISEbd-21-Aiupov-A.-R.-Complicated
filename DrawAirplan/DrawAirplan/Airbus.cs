@@ -22,16 +22,16 @@ bool airplanChassis, int windowCount, int windowForm) :
 
             if (WindowForm == 0)
             {
-                Portholes = new PortholeCircle(windowCount);
+                Portholes = new DrawPortholeCircle(windowCount);
                 
             }
             else if (WindowForm == 1)
             {
-                Portholes = new PortholeRectangle(windowCount);
+                Portholes = new DrawPortholeRectangle(windowCount);
             }
             else 
             {
-                Portholes = new PortholeTriangle(windowCount);                
+                Portholes = new DrawPortholeTriangle(windowCount);                
             }
         }
 

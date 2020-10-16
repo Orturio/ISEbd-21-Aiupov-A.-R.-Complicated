@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace DrawAirplan
 {
-    class PortholeCircle : IDop
+    class DrawPortholeTriangle : IDop
     {
         private int ten = 10;
         private int step = 7;
@@ -15,7 +15,8 @@ namespace DrawAirplan
 
         private Elements windowСount;
 
-        public PortholeCircle(int windowCount) {
+        public DrawPortholeTriangle(int windowCount)
+        {
             SetCount = windowCount;
         }
 
@@ -44,10 +45,14 @@ namespace DrawAirplan
             Brush dopColorBrush = new SolidBrush(dopColor);
 
             for (int i = 0; i < ten; i++)
-            {               
-                g.DrawEllipse(pen, _startPosX + step * ten, _startPosY - 4, 3, 3);
-                g.FillEllipse(dopColorBrush, _startPosX + step * ten, _startPosY - 4, 3, 3);
-                
+            {
+
+                PointF s1 = new PointF(_startPosX + 10 * step - 3, _startPosY);
+                PointF s2 = new PointF(_startPosX + 10 * step, _startPosY - 5);
+                PointF s3 = new PointF(_startPosX + 10 * step + 3, _startPosY);
+                PointF[] points = { s1, s2, s3 };
+                g.FillPolygon(dopColorBrush, points);
+
                 step++;
 
                 if (step == maxStep)
@@ -66,10 +71,13 @@ namespace DrawAirplan
 
             for (int i = 0; i < ten; i++)
             {
-                
-                g.DrawEllipse(pen, _startPosX + step * ten, _startPosY + 5, 3, 3);
-                g.FillEllipse(dopColorBrush, _startPosX + step * ten, _startPosY + 5, 3, 3);
-                              
+                PointF s1 = new PointF(_startPosX + 10 * step - 3, _startPosY + 7);
+                PointF s2 = new PointF(_startPosX + 10 * step, _startPosY + 2);
+                PointF s3 = new PointF(_startPosX + 10 * step + 3, _startPosY + 7);
+                PointF[] points = { s1, s2, s3 };
+                g.FillPolygon(dopColorBrush, points);
+
+
                 step++;
 
                 if (step == maxStep)
@@ -88,9 +96,13 @@ namespace DrawAirplan
             step = 12;
 
             for (int i = 0; i <= 5; i++)
-            {               
-                g.DrawEllipse(pen, _startPosX + step * ten, _startPosY + 15, 3, 3);
-                g.FillEllipse(dopColorBrush, _startPosX + step * ten, _startPosY + 15, 3, 3);                                              
+            {
+                PointF s1 = new PointF(_startPosX + 10 * step - 3, _startPosY + 19);
+                PointF s2 = new PointF(_startPosX + 10 * step, _startPosY + 14);
+                PointF s3 = new PointF(_startPosX + 10 * step + 3, _startPosY + 19);
+                PointF[] points = { s1, s2, s3 };
+                g.FillPolygon(dopColorBrush, points);
+
                 step++;
             }
 
@@ -113,6 +125,7 @@ namespace DrawAirplan
                         DrawThirtyPortholes(g, dopColor, _startPosX, _startPosY);
                     }
                 }
+
             }
         }
     }
