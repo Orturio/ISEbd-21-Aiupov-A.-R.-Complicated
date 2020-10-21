@@ -39,7 +39,7 @@ namespace DrawAirplan
             }
         }
 
-        public void DrawTenPortholes(Graphics g, Color dopColor, float _startPosX, float _startPosY)
+        private void DrawTenPortholes(Graphics g, Color dopColor, float _startPosX, float _startPosY)
         {
             Pen pen = new Pen(Color.Black);
             Brush dopColorBrush = new SolidBrush(dopColor);
@@ -64,7 +64,7 @@ namespace DrawAirplan
             step = 7;
         }
 
-        public void DrawTwentyPortholes(Graphics g, Color dopColor, float _startPosX, float _startPosY)
+        private void DrawTwentyPortholes(Graphics g, Color dopColor, float _startPosX, float _startPosY)
         {
             Pen pen = new Pen(Color.Black);
             Brush dopColorBrush = new SolidBrush(dopColor);
@@ -89,7 +89,7 @@ namespace DrawAirplan
             step = 7;
         }
 
-        public void DrawThirtyPortholes(Graphics g, Color dopColor, float _startPosX, float _startPosY)
+        private void DrawThirtyPortholes(Graphics g, Color dopColor, float _startPosX, float _startPosY)
         {
             Pen pen = new Pen(Color.Black);
             Brush dopColorBrush = new SolidBrush(dopColor);
