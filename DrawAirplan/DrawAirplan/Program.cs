@@ -16,7 +16,7 @@ namespace DrawAirplan
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormAirplan());
+            Application.Run(new FormAerodrome());
         }
     }
 }

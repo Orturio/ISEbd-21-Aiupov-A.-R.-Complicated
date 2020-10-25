@@ -10,6 +10,8 @@ namespace DrawAirplan
 
         public bool Window {private set; get;}
 
+        public Color MainColor { protected set; get; }
+
         public Aircraft(int maxSpeed, float weight, Color mainColor, bool window)
         {
             MaxSpeed = maxSpeed;

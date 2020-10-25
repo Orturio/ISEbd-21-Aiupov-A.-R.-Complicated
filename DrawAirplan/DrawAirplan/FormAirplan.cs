@@ -14,6 +14,12 @@ namespace DrawAirplan
             comboBoxWindowCount.Items.AddRange(new string[] { "10", "20", "30" });           
         }
 
+        public void SetAircraft(ITransport aircraft)
+        {
+            this.aircraft = aircraft;
+            Draw();
+        }
+
         private void Draw()
         {
             Bitmap bmp = new Bitmap(pictureBoxAircraft.Width, pictureBoxAircraft.Height);
@@ -36,7 +42,7 @@ pictureBoxAircraft.Height);
             Random rnd = new Random();
             int windowCount = Convert.ToInt32(comboBoxWindowCount.SelectedItem);          
             aircraft = new Airbus(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.LightBlue,
-Color.Black, true, windowCount, checkedListBoxForm.SelectedIndex);
+Color.Black, windowCount, checkedListBoxForm.SelectedIndex);
             aircraft.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxAircraft.Width,
 pictureBoxAircraft.Height);
             Draw();            
