@@ -36,10 +36,9 @@
             this.labelPlace = new System.Windows.Forms.Label();
             this.pictureBoxAerodrome = new System.Windows.Forms.PictureBox();
             this.groupBoxCompare = new System.Windows.Forms.GroupBox();
-            this.buttonCompareForSimilarAicrafts = new System.Windows.Forms.Button();
-            this.maskedTextBoxCompareForSimilarity = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.buttonUniqChecking = new System.Windows.Forms.Button();
+            this.maskedTextBoxCompareForSimilarity = new System.Windows.Forms.MaskedTextBox();
+            this.buttonCheckingForFreePlaces = new System.Windows.Forms.Button();
             this.groupBoxAircraft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAerodrome)).BeginInit();
             this.groupBoxCompare.SuspendLayout();
@@ -113,26 +112,24 @@
             // 
             // groupBoxCompare
             // 
-            this.groupBoxCompare.Controls.Add(this.buttonUniqChecking);
             this.groupBoxCompare.Controls.Add(this.label1);
             this.groupBoxCompare.Controls.Add(this.maskedTextBoxCompareForSimilarity);
-            this.groupBoxCompare.Controls.Add(this.buttonCompareForSimilarAicrafts);
+            this.groupBoxCompare.Controls.Add(this.buttonCheckingForFreePlaces);
             this.groupBoxCompare.Location = new System.Drawing.Point(665, 225);
             this.groupBoxCompare.Name = "groupBoxCompare";
-            this.groupBoxCompare.Size = new System.Drawing.Size(123, 195);
+            this.groupBoxCompare.Size = new System.Drawing.Size(123, 116);
             this.groupBoxCompare.TabIndex = 6;
             this.groupBoxCompare.TabStop = false;
             this.groupBoxCompare.Text = "Сравнить";
             // 
-            // buttonCompareForSimilarAicrafts
+            // label1
             // 
-            this.buttonCompareForSimilarAicrafts.Location = new System.Drawing.Point(14, 52);
-            this.buttonCompareForSimilarAicrafts.Name = "buttonCompareForSimilarAicrafts";
-            this.buttonCompareForSimilarAicrafts.Size = new System.Drawing.Size(99, 57);
-            this.buttonCompareForSimilarAicrafts.TabIndex = 0;
-            this.buttonCompareForSimilarAicrafts.Text = "Сравнить самолёт на схожесть";
-            this.buttonCompareForSimilarAicrafts.UseVisualStyleBackColor = true;
-            this.buttonCompareForSimilarAicrafts.Click += new System.EventHandler(this.buttonCompareForSimilarAicrafts_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(11, 29);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Кол-во:";
             // 
             // maskedTextBoxCompareForSimilarity
             // 
@@ -141,24 +138,15 @@
             this.maskedTextBoxCompareForSimilarity.Size = new System.Drawing.Size(57, 20);
             this.maskedTextBoxCompareForSimilarity.TabIndex = 1;
             // 
-            // label1
+            // buttonCheckingForFreePlaces
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Номер";
-            // 
-            // buttonUniqChecking
-            // 
-            this.buttonUniqChecking.Location = new System.Drawing.Point(14, 115);
-            this.buttonUniqChecking.Name = "buttonUniqChecking";
-            this.buttonUniqChecking.Size = new System.Drawing.Size(99, 55);
-            this.buttonUniqChecking.TabIndex = 4;
-            this.buttonUniqChecking.Text = "Проверка на уникальность";
-            this.buttonUniqChecking.UseVisualStyleBackColor = true;
-            this.buttonUniqChecking.Click += new System.EventHandler(this.buttonUniqChecking_Click);
+            this.buttonCheckingForFreePlaces.Location = new System.Drawing.Point(14, 52);
+            this.buttonCheckingForFreePlaces.Name = "buttonCheckingForFreePlaces";
+            this.buttonCheckingForFreePlaces.Size = new System.Drawing.Size(99, 57);
+            this.buttonCheckingForFreePlaces.TabIndex = 0;
+            this.buttonCheckingForFreePlaces.Text = "Сравнить на кол-во свободных мест";
+            this.buttonCheckingForFreePlaces.UseVisualStyleBackColor = true;
+            this.buttonCheckingForFreePlaces.Click += new System.EventHandler(this.buttonCheckingForFreePlaces_Click);
             // 
             // FormAerodrome
             // 
@@ -191,9 +179,8 @@
         private System.Windows.Forms.MaskedTextBox maskedTextBox;
         private System.Windows.Forms.Label labelPlace;
         private System.Windows.Forms.GroupBox groupBoxCompare;
-        private System.Windows.Forms.Button buttonCompareForSimilarAicrafts;
+        private System.Windows.Forms.Button buttonCheckingForFreePlaces;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxCompareForSimilarity;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button buttonUniqChecking;
     }
 }

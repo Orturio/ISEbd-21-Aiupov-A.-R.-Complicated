@@ -50,56 +50,27 @@ namespace DrawAirplan
             return null;
         }
 
-        public static bool operator ==(Aerodrome<T,U> a, int ind)
+        private int CompareHelper()
         {
-            if (a._places[1] == null) 
+            int count = 0;
+            for (int i = 0; i < _places.Length; i++)
             {
-                return false;
-            }
-
-            for (int i = 0; i < a._places.Length; ++i)
-            {
-                if (i == ind) 
-                {                    
-                    continue;                  
-                }
-                if (a._places[i] is Airbus && a._places[ind] is Airbus) 
-                { 
-                    return true; 
-                }
-                if (!(a._places[ind] is Airbus) && !(a._places[i] is Airbus) && 
-                    a._places[ind] is Aircraft && a._places[i] is Aircraft) 
+                if (_places[i] == null)
                 {
-                    return true;
-                }                
+                    count++;
+                }
             }
-            return false;
+            return count;
         }
 
-        public static bool operator !=(Aerodrome<T,U> a, int ind)
+        public static bool operator ==(Aerodrome<T, U> a, int ind)
         {
-            if (a._places[1] == null)
-            {
-                return true;
-            }
+            return (a.CompareHelper() == ind);
+        }
 
-            for (int i = 0; i < a._places.Length; ++i)
-            {
-                if (i == ind)
-                {
-                    continue;
-                }
-                if (a._places[i] is Airbus && a._places[ind] is Airbus)
-                {
-                    return false;
-                }
-                if (!(a._places[ind] is Airbus) && !(a._places[i] is Airbus) && 
-                    a._places[ind] is Aircraft && a._places[i] is Aircraft)
-                {
-                    return false;
-                }
-            }
-            return true;
+        public static bool operator !=(Aerodrome<T, U> a, int ind)
+        {
+            return (a.CompareHelper() != ind);
         }
 
         public void Draw(Graphics g)

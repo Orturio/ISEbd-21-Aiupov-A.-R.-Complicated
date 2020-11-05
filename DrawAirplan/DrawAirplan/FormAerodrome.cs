@@ -78,36 +78,20 @@ namespace DrawAirplan
             }
         }
 
-        private void buttonCompareForSimilarAicrafts_Click(object sender, EventArgs e)
+        private void buttonCheckingForFreePlaces_Click(object sender, EventArgs e)
         {
             if (maskedTextBoxCompareForSimilarity.Text != "")           
             {
                 int index = Convert.ToInt32(maskedTextBoxCompareForSimilarity.Text);
                 if (aerodrome == index)
                 {
-                    MessageBox.Show("Есть самолёт такого же типа как и выбранный");
+                    MessageBox.Show("Свободных мест на аэродроме = " + index);
                 }
-                else 
+                else if (aerodrome != index)
                 {
-                    MessageBox.Show("Самолёт такой один");
+                    MessageBox.Show("Свободных мест на аэродроме не " + index);
                 }
             }
-        }
-
-        private void buttonUniqChecking_Click(object sender, EventArgs e)
-        {
-            if (maskedTextBoxCompareForSimilarity.Text != "")
-            {
-                int index = Convert.ToInt32(maskedTextBoxCompareForSimilarity.Text);
-                if (aerodrome != index)
-                {
-                    MessageBox.Show("Самолёт уникален");
-                }
-                else 
-                {
-                    MessageBox.Show("Этот самолёт не уникален");
-                }
-            }
-        }
+        }       
     }
 }
