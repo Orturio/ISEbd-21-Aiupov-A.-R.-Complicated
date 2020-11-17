@@ -45,9 +45,14 @@ namespace DrawAirplan
             {
                 return null;
             }
-            T aircraft = a._places[index];
-            a._places.RemoveAt(index);
-            return aircraft;
+
+            else if (a._places.Count > index)
+            {
+                T aircraft = a._places[index];
+                a._places.RemoveAt(index);
+                return aircraft;
+            }
+            return null;
         }
 
         public void Draw(Graphics g)
