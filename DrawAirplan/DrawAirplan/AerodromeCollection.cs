@@ -63,7 +63,7 @@ namespace DrawAirplan
             {
                 if (aerodromeStages.ContainsKey(key) && ind > -1)
                 {                    
-                    return aerodromeStages[key]._places[ind];
+                    return aerodromeStages[key][ind];
                 }
                 else
                 {
