@@ -5,7 +5,7 @@ namespace DrawAirplan
 {
     public class Aerodrome<T, U> where T : class, ITransport where U : class, IDop
     {
-        public readonly List<T> _places;
+        private readonly List<T> _places;
 
         private readonly int _maxCount;
 
