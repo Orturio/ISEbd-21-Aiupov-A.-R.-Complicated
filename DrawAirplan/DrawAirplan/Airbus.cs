@@ -6,32 +6,43 @@ namespace DrawAirplan
     {
         public Color DopColor { private set; get; }
 
-        public int WindowForm { private set; get; }
-
         IDop Portholes;
 
-        public Airbus(int maxSpeed, float weight, Color mainColor, Color dopColor, int windowCount, int windowForm) :
+        public int PortholeCount { private set; get; }
+
+        public string PortholeForm { private set; get; }
+
+        public Airbus(int maxSpeed, float weight, Color mainColor, Color dopColor, int windowCount, string portholeForm) :
             base(maxSpeed, weight, mainColor, 220, 100, false)
         {
-            DopColor = dopColor;      
-            WindowForm = windowForm;
+            DopColor = dopColor;
+            PortholeForm = portholeForm;
 
-            if (WindowForm == 0)
+            if (PortholeForm == "DrawPortholeCircle")
             {
                 Portholes = new DrawPortholeCircle(windowCount);
-                
+
             }
-            else if (WindowForm == 1)
+            else if (PortholeForm == "DrawPortholeRectangle")
             {
                 Portholes = new DrawPortholeRectangle(windowCount);
             }
-            else 
+            else
             {
-                Portholes = new DrawPortholeTriangle(windowCount);                
+                Portholes = new DrawPortholeTriangle(windowCount);
             }
         }
 
-       
+        public void SetPortholes(IDop porthole)
+        {
+            Portholes = porthole;
+            PortholeForm = Portholes.GetType().Name;
+        }
+
+        public void SetPortholesCount(int portholeCount)
+        {
+            PortholeCount = portholeCount;
+        }
 
         public override void DrawTransport(Graphics g)
         {
@@ -47,6 +58,11 @@ namespace DrawAirplan
             g.FillEllipse(dopBrush, _startPosX + 175, _startPosY + 30, 10, 10);         
           
             Portholes.DrawElements(g, DopColor, _startPosX, _startPosY);          
+        }
+
+        public void SetDopColor(Color color)
+        {
+            DopColor = color;
         }
     }
 }

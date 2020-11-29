@@ -76,45 +76,7 @@ MessageBoxIcon.Question) == DialogResult.Yes)
                 }
             }
         }
-
-        private void buttonLandAircraft_Click(object sender, EventArgs e)
-        {
-            ColorDialog dialog = new ColorDialog();
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                var aircraft = new Aircraft(100, 1000, dialog.Color, true);
-                if (aerodromeCollection[listBoxAerodromes.SelectedItem.ToString()] + aircraft)
-                {
-                    Draw();
-                }
-                else
-                {
-                    MessageBox.Show("Мест нет");
-                }
-            }
-        }
-
-        private void buttonLandAirbus_Click(object sender, EventArgs e)
-        {
-            ColorDialog dialog = new ColorDialog();
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                ColorDialog dialogDop = new ColorDialog();
-                if (dialogDop.ShowDialog() == DialogResult.OK)
-                {
-                    var aircraft = new Airbus(100, 1000, dialog.Color, dialogDop.Color, 20, 1);
-                    if (aerodromeCollection[listBoxAerodromes.SelectedItem.ToString()] + aircraft)
-                    {
-                        Draw();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Мест нет");
-                    }
-                }
-            }
-        }
-
+             
         private void buttonTakeAircraft_Click(object sender, EventArgs e)
         {
             if (maskedTextBox.Text != "")
@@ -146,6 +108,28 @@ MessageBoxIcon.Question) == DialogResult.Yes)
         private void listBoxAerodrome_SelectedIndexChanged(object sender, EventArgs e)
         {
             Draw();
+        }
+
+        private void buttonSetAircraft_Click(object sender, EventArgs e)
+        {
+            var formAircraftConfig = new FormAircraftConfig();
+            formAircraftConfig.AddEvent(AddAircraft);
+            formAircraftConfig.Show();
+        }
+
+        private void AddAircraft(Vehicle aircraft)
+        {
+            if (aircraft != null && listBoxAerodromes.SelectedIndex > -1)
+            {
+                if ((aerodromeCollection[listBoxAerodromes.SelectedItem.ToString()]) + aircraft)
+                {
+                    Draw();
+                }
+                else
+                {
+                    MessageBox.Show("Самолёт не удалось посадить");
+                }
+            }
         }
     }
 }

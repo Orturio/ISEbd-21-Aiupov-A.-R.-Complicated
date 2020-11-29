@@ -10,5 +10,6 @@ namespace DrawAirplan
 
         void DrawTransport(Graphics g);
 
+        void SetMainColor(Color color);
     }
 }
