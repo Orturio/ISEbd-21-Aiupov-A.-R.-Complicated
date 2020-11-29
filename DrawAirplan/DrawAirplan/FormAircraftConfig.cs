@@ -76,10 +76,10 @@ namespace DrawAirplan
             switch (e.Data.GetData(DataFormats.Text).ToString())
             {
                 case "Обычный самолёт":
-                    aircraft = new Aircraft((int)numericUpDownMaxSpeed.Value, (float)numericUpDownWeight.Value, Color.White, true);
+                    aircraft = new Aircraft((int)numericUpDownMaxSpeed.Value, (float)numericUpDownWeight.Value, Color.White);
                     break;
                 case "Эйрбас":
-                    aircraft = new Airbus((int)numericUpDownMaxSpeed.Value, (int)numericUpDownWeight.Value, Color.White, Color.Black, 10, "DrawPortholeCircle");
+                    aircraft = new Airbus((int)numericUpDownMaxSpeed.Value, (int)numericUpDownWeight.Value,Color.White, Color.Black, 10, "DrawPortholeCircle");
                     break;
             }
             DrawAircraft();

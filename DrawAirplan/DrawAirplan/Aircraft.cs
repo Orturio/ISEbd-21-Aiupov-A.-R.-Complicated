@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System;
 
 namespace DrawAirplan
 {
@@ -8,24 +9,33 @@ namespace DrawAirplan
 
         protected readonly int airplanHeight = 100;
 
-        public bool Window {private set; get;}
+        protected readonly char separator = ';';
 
-        public Aircraft(int maxSpeed, float weight, Color mainColor, bool window)
+        public Aircraft(int maxSpeed, float weight, Color mainColor)
         {
             MaxSpeed = maxSpeed;
             Weight = weight;
             MainColor = mainColor;
-            Window = window;
         }
 
-        protected Aircraft(int maxSpeed, float weight, Color mainColor, int airplanHeight, int airplanWidth,  bool window)
+        protected Aircraft(int maxSpeed, float weight, Color mainColor, int airplanHeight, int airplanWidth)
         {
             MaxSpeed = maxSpeed;
             Weight = weight;
             MainColor = mainColor;
             this.airplanWidth = airplanWidth;
             this.airplanHeight = airplanHeight;
-            Window = window;
+        }
+
+        public Aircraft(string info)
+        {
+            string[] strs = info.Split(separator);
+            if (strs.Length == 3)
+            {
+                MaxSpeed = Convert.ToInt32(strs[0]);
+                Weight = Convert.ToInt32(strs[1]);
+                MainColor = Color.FromName(strs[2]);               
+            }
         }
 
         public override void MoveTransport(Direction direction)
@@ -113,27 +123,7 @@ namespace DrawAirplan
             g.DrawRectangle(pen, _startPosX + 35, _startPosY + 13, 8, 13);
             g.DrawRectangle(pen, _startPosX + 50, _startPosY - 6, 8, 13);
             g.DrawRectangle(pen, _startPosX + 170, _startPosY - 6, 8, 13);
-            g.DrawRectangle(pen, _startPosX + 175, _startPosY + 13, 8, 13);           
-
-            if (Window) 
-            {
-                g.DrawEllipse(pen, _startPosX + 190, _startPosY + 15, 5, 5);
-                g.DrawEllipse(pen, _startPosX + 160, _startPosY + 15, 5, 5);
-                g.DrawEllipse(pen, _startPosX + 150, _startPosY + 15, 5, 5);
-                g.DrawEllipse(pen, _startPosX + 140, _startPosY + 15, 5, 5);
-                g.DrawEllipse(pen, _startPosX + 130, _startPosY + 15, 5, 5);
-                g.DrawEllipse(pen, _startPosX + 120, _startPosY + 15, 5, 5);
-
-                g.DrawEllipse(pen, _startPosX + 70, _startPosY - 4, 5, 5);
-                g.DrawEllipse(pen, _startPosX + 80, _startPosY - 4, 5, 5);
-                g.DrawEllipse(pen, _startPosX + 105, _startPosY - 4, 5, 5);
-                g.DrawEllipse(pen, _startPosX + 115, _startPosY - 4, 5, 5);
-                g.DrawEllipse(pen, _startPosX + 125, _startPosY - 4, 5, 5);
-                g.DrawEllipse(pen, _startPosX + 135, _startPosY - 4, 5, 5);
-                g.DrawEllipse(pen, _startPosX + 145, _startPosY - 4, 5, 5);
-                g.DrawEllipse(pen, _startPosX + 155, _startPosY - 4, 5, 5);
-                g.DrawEllipse(pen, _startPosX + 185, _startPosY - 4, 5, 5);
-            }
+            g.DrawRectangle(pen, _startPosX + 175, _startPosY + 13, 8, 13);            
 
             // нарисовал одно окно самолёта
             Brush window = new SolidBrush(MainColor);
@@ -156,6 +146,11 @@ namespace DrawAirplan
             g.FillRectangle(chassie, _startPosX + 195, _startPosY + 28, 15, 7);
             g.FillRectangle(chassie, _startPosX + 202, _startPosY + 33, 2, 6);
             g.FillEllipse(chassie, _startPosX + 198, _startPosY + 36, 10, 10);
+        }
+
+        public override string ToString()
+        {
+            return $"{MaxSpeed}{separator}{Weight}{separator}{MainColor.Name}";
         }
     }
 }

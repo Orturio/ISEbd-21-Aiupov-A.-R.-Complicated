@@ -60,7 +60,7 @@ namespace DrawAirplan
             DrawMarking(g);
             for (int i = 0; i < _places.Count; ++i)
             {
-                _places[i].SetPosition(5 + i / 5 * _placeSizeWidth + 5, i % 5 *
+                _places[i].SetPosition(5 + i / 4 * _placeSizeWidth + 5, i % 4 *
 _placeSizeHeight + 30, pictureWidth, pictureHeight);
                 _places[i].DrawTransport(g);
             }
@@ -85,7 +85,7 @@ _placeSizeHeight + 30, pictureWidth, pictureHeight);
         {
             get
             {
-                if (ind > -1 && ind < _maxCount)
+                if (ind > -1 && ind < _places.Count)
                 {
                     return _places[ind];
                 }
