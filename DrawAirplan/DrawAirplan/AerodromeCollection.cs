@@ -168,7 +168,10 @@ namespace DrawAirplan
                     //очищаем записи
                     aerodromeStages.Clear();
                 }
-                else if (line.Contains("OneAerodrome") && !loadType) { }
+                else if (line.Contains("OneAerodrome") && !loadType) 
+                {
+                    aerodromeStages.Clear();
+                }
                 else
                 {
                     //если нет такой записи, то это не те данные
