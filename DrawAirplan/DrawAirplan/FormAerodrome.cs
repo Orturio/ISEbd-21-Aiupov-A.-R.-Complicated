@@ -172,7 +172,7 @@ MessageBoxIcon.Error);
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (aerodromeCollection.SaveData(saveFileDialog.FileName, listBoxAerodromes.SelectedItem.ToString()))
+                if (aerodromeCollection.SaveOneLevel(saveFileDialog.FileName, listBoxAerodromes.SelectedItem.ToString()))
                 {
                     MessageBox.Show("Сохранение прошло успешно", "Результат",
 MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -189,7 +189,7 @@ MessageBoxButtons.OK, MessageBoxIcon.Error);
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {                
-                if (aerodromeCollection.LoadData(openFileDialog.FileName, false))
+                if (aerodromeCollection.LoadOneLevel(openFileDialog.FileName, false))
                 {
                     MessageBox.Show("Загрузили", "Результат", MessageBoxButtons.OK,
 MessageBoxIcon.Information);

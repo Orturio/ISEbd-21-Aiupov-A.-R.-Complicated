@@ -95,5 +95,10 @@ _placeSizeHeight + 30, pictureWidth, pictureHeight);
                 }
             }
         }
+
+        public void ClearStages()
+        {
+            _places.Clear();
+        }
     }
 }

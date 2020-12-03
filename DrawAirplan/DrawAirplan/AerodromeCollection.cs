@@ -114,40 +114,42 @@ namespace DrawAirplan
             return true;
         }
 
-        public bool SaveData(string filename, string aerodromeName)
+        public bool SaveOneLevel(string filename, string aerodromeName)
         {
             if (File.Exists(filename))
             {
                 File.Delete(filename);
             }
-            using (FileStream fs = new FileStream(filename, FileMode.Create))
+            if (aerodromeStages.ContainsKey(aerodromeName))
             {
-                using (StreamWriter sw = new StreamWriter(fs, Encoding.UTF8))
+                using (FileStream fs = new FileStream(filename, FileMode.Create))
                 {
-                    sw.WriteLine($"OneAerodrome");
-
-                    sw.WriteLine($"Aerodrome{separator}{aerodromeName}");
-                    ITransport aircraft = null;
-                    var level = aerodromeStages[aerodromeName];
-
-                    for (int i = 0; (aircraft = level[i]) != null; i++)
+                    using (StreamWriter sw = new StreamWriter(fs, Encoding.UTF8))
                     {
-                        if (aircraft != null)
-                        {
-                            if (aircraft.GetType().Name == "Aircraft")
-                            {
-                                sw.Write($"Aircraft{separator}");
+                        sw.WriteLine($"OneAerodrome");
 
-                            }
-                            if (aircraft.GetType().Name == "Airbus")
+                        sw.WriteLine($"Aerodrome{separator}{aerodromeName}");
+                        ITransport aircraft = null;
+                        var level = aerodromeStages[aerodromeName];
+
+                        for (int i = 0; (aircraft = level[i]) != null; i++)
+                        {
+                            if (aircraft != null)
                             {
-                                sw.Write($"Airbus{separator}");
+                                if (aircraft.GetType().Name == "Aircraft")
+                                {
+                                    sw.Write($"Aircraft{separator}");
+
+                                }
+                                if (aircraft.GetType().Name == "Airbus")
+                                {
+                                    sw.Write($"Airbus{separator}");
+                                }
+                                //Записываемые параметры
+                                sw.WriteLine(aircraft);
                             }
-                            //Записываемые параметры
-                            sw.WriteLine(aircraft);
                         }
                     }
-
                 }
             }
             return true;
@@ -168,10 +170,6 @@ namespace DrawAirplan
                     //очищаем записи
                     aerodromeStages.Clear();
                 }
-                else if (line.Contains("OneAerodrome") && !loadType) 
-                {
-                    aerodromeStages.Clear();
-                }
                 else
                 {
                     //если нет такой записи, то это не те данные
@@ -183,10 +181,6 @@ namespace DrawAirplan
                 while (line != null && line.Contains("Aerodrome"))
                 {
                     key = line.Split(separator)[1];
-                    if (aerodromeStages.ContainsKey(key))
-                    {
-                        aerodromeStages.Remove(key);
-                    }
                     aerodromeStages.Add(key, new Aerodrome<Vehicle, DrawPortholeCircle>(pictureWidth,
                     pictureHeight));
 
@@ -207,6 +201,59 @@ namespace DrawAirplan
                             return false;
                         }
                         line = sr.ReadLine();
+                    }
+                }
+                return true;
+            }
+        }
+
+        public bool LoadOneLevel(string filename, bool loadType)
+        {
+            if (!File.Exists(filename))
+            {
+                return false;
+            }
+            using (StreamReader sr = new StreamReader(filename))
+            {
+                string line = sr.ReadLine();
+                if (line.Contains("OneAerodrome") && !loadType)
+                {
+                }
+                else
+                {
+                    //если нет такой записи, то это не те данные
+                    return false;
+                }
+
+                line = sr.ReadLine();
+                Vehicle aircraft = null;
+                string key = string.Empty;
+
+                while (line != null && line.Contains("Aerodrome"))
+                {
+                    key = line.Split(separator)[1];
+                    aerodromeStages.Add(key, new Aerodrome<Vehicle, DrawPortholeCircle>(pictureWidth, pictureHeight));
+                    if (aerodromeStages.ContainsKey(key))
+                    {
+                        aerodromeStages[key].ClearStages();
+                    }
+                    line = sr.ReadLine();
+                    while (line != null && (line.Contains("Aircraft") || line.Contains("Airbus")))
+                    {
+                        if (line.Split(separator)[0] == "Aircraft")
+                        {
+                            aircraft = new Aircraft(line.Split(separator)[1]);
+                        }
+                        else if (line.Split(separator)[0] == "Airbus")
+                        {
+                            aircraft = new Airbus(line.Split(separator)[1]);
+                        }
+                        line = sr.ReadLine();
+                        var result = aerodromeStages[key] + aircraft;
+                        if (!result)
+                        {
+                            return false;
+                        }
                     }
                 }
                 return true;
