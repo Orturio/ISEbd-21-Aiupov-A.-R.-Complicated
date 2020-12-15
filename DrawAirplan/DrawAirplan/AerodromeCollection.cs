@@ -74,7 +74,7 @@ namespace DrawAirplan
             }
         }
 
-        public bool SaveData(string filename)
+        public void SaveData(string filename)
         {
             if (File.Exists(filename))
             {
@@ -111,10 +111,9 @@ namespace DrawAirplan
                     }
                 }
             }
-            return true;
         }
 
-        public bool SaveOneLevel(string filename, string aerodromeName)
+        public void SaveOneLevel(string filename, string aerodromeName)
         {
             if (File.Exists(filename))
             {
@@ -152,14 +151,18 @@ namespace DrawAirplan
                     }
                 }
             }
-            return true;
+            else
+            {
+                //если нет такой записи, то это не те данные
+                throw new FormatException();
+            }
         }
 
-        public bool LoadData(string filename, bool loadType)
+        public void LoadData(string filename, bool loadType)
         {
             if (!File.Exists(filename))
             {
-                return false;
+                throw new FileNotFoundException();
             }
 
             using (StreamReader sr = new StreamReader(filename))
@@ -173,7 +176,7 @@ namespace DrawAirplan
                 else
                 {
                     //если нет такой записи, то это не те данные
-                    return false;
+                    throw new FormatException();
                 }
                 line = sr.ReadLine();
                 Vehicle aircraft = null;
@@ -198,20 +201,19 @@ namespace DrawAirplan
                         var result = aerodromeStages[key] + aircraft;
                         if (!result)
                         {
-                            return false;
+                            throw new NullReferenceException();
                         }
                         line = sr.ReadLine();
                     }
                 }
-                return true;
             }
         }
 
-        public bool LoadOneLevel(string filename, bool loadType)
+        public void LoadOneLevel(string filename, bool loadType)
         {
             if (!File.Exists(filename))
             {
-                return false;
+                throw new FileNotFoundException();
             }
             using (StreamReader sr = new StreamReader(filename))
             {
@@ -222,7 +224,7 @@ namespace DrawAirplan
                 else
                 {
                     //если нет такой записи, то это не те данные
-                    return false;
+                    throw new FormatException();
                 }
 
                 line = sr.ReadLine();
@@ -252,11 +254,10 @@ namespace DrawAirplan
                         var result = aerodromeStages[key] + aircraft;
                         if (!result)
                         {
-                            return false;
+                            throw new NullReferenceException();
                         }
                     }
                 }
-                return true;
             }
         }
     }

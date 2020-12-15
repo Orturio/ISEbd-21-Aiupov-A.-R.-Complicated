@@ -33,7 +33,7 @@ namespace DrawAirplan
         {
             if (a._places.Count >= a._maxCount)
             {
-                return false;
+                throw new AerodromeOverflowException();
             }
             a._places.Add(aircraft);
             return true;
@@ -43,16 +43,12 @@ namespace DrawAirplan
         {
             if (index < -1 || index > a._places.Count)
             {
-                return null;
+                throw new AerodromeNotFoundException(index);
             }
 
-            else if (a._places.Count > index)
-            {
-                T aircraft = a._places[index];
-                a._places.RemoveAt(index);
-                return aircraft;
-            }
-            return null;
+            T aircraft = a._places[index];
+            a._places.RemoveAt(index);
+            return aircraft;
         }
 
         public void Draw(Graphics g)
