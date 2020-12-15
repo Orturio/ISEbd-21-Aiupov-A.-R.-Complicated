@@ -215,11 +215,8 @@ namespace DrawAirplan
             }
             using (StreamReader sr = new StreamReader(filename))
             {
-                string line = sr.ReadLine();
-                if (line.Contains("OneAerodrome") && !loadType)
-                {
-                }
-                else
+                string line = sr.ReadLine();                
+                if (!(line.Contains("OneAerodrome") && !loadType))
                 {
                     //если нет такой записи, то это не те данные
                     return false;
