@@ -78,7 +78,8 @@ namespace DrawAirplan
                 objectProperties.Add(Weight);
                 objectProperties.Add(MainColor);
                 objectProperties.Add(DopColor);
-                objectProperties.Add(PortholeCount);               
+                objectProperties.Add(PortholeCount);
+                objectProperties.Add(PortholeForm);
             }
         }
 
