@@ -1,9 +1,12 @@
 ﻿using System.Drawing;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+
 
 namespace DrawAirplan
 {
-    public class Aircraft : Vehicle
+    public class Aircraft : Vehicle, IEquatable<Aircraft>, IComparable<Aircraft>, IEnumerator<object>, IEnumerable<object>
     {
         protected readonly int airplanWidth = 220;
 
@@ -11,11 +14,22 @@ namespace DrawAirplan
 
         protected readonly char separator = ';';
 
+        private int _currentIndex = -1;
+
+        public List<Object> objectProperties = new List<Object>();
+
+        public object Current => objectProperties[_currentIndex];
+
+        object IEnumerator<Object>.Current => objectProperties[_currentIndex];
+
         public Aircraft(int maxSpeed, float weight, Color mainColor)
         {
             MaxSpeed = maxSpeed;
             Weight = weight;
             MainColor = mainColor;
+            objectProperties.Add(MaxSpeed);
+            objectProperties.Add(Weight);
+            objectProperties.Add(MainColor);
         }
 
         protected Aircraft(int maxSpeed, float weight, Color mainColor, int airplanHeight, int airplanWidth)
@@ -25,6 +39,9 @@ namespace DrawAirplan
             MainColor = mainColor;
             this.airplanWidth = airplanWidth;
             this.airplanHeight = airplanHeight;
+            objectProperties.Add(MaxSpeed);
+            objectProperties.Add(Weight);
+            objectProperties.Add(MainColor);
         }
 
         public Aircraft(string info)
@@ -34,7 +51,10 @@ namespace DrawAirplan
             {
                 MaxSpeed = Convert.ToInt32(strs[0]);
                 Weight = Convert.ToInt32(strs[1]);
-                MainColor = Color.FromName(strs[2]);               
+                MainColor = Color.FromName(strs[2]);
+                objectProperties.Add(MaxSpeed);
+                objectProperties.Add(Weight);
+                objectProperties.Add(MainColor);
             }
         }
 
@@ -151,6 +171,87 @@ namespace DrawAirplan
         public override string ToString()
         {
             return $"{MaxSpeed}{separator}{Weight}{separator}{MainColor.Name}";
+        }
+
+        public bool Equals(Aircraft other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            if (GetType().Name != other.GetType().Name)
+            {
+                return false;
+            }
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return false;
+            }
+            if (Weight != other.Weight)
+            {
+                return false;
+            }
+            if (MainColor != other.MainColor)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public override bool Equals(Object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            if (!(obj is Aircraft aircraftObj))
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(aircraftObj);
+            }
+        }
+
+        public int CompareTo(Aircraft a)
+        {
+            if (MaxSpeed != a.MaxSpeed)
+            {
+                return MaxSpeed.CompareTo(a.MaxSpeed);
+            }
+            if (Weight != a.Weight)
+            {
+                return Weight.CompareTo(a.Weight);
+            }
+            if (MainColor != a.MainColor)
+            {
+                return MainColor.Name.CompareTo(a.MainColor.Name);
+            }
+            return 0;
+        }
+
+        public void Dispose() { }
+
+        public bool MoveNext()
+        {
+            _currentIndex++;
+            return _currentIndex < 7;
+        }
+
+        public void Reset()
+        {
+            _currentIndex = -1;
+        }
+
+        public IEnumerator<object> GetEnumerator()
+        {
+            return (IEnumerator<object>)objectProperties;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

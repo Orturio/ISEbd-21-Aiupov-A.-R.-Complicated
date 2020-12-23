@@ -87,26 +87,22 @@ namespace DrawAirplan
                     writer.Write($"AerodromeCollection{Environment.NewLine}", fs);
                     foreach (var level in aerodromeStages)
                     {
-                        //Начинаем парковку
+                        //Начинаем аэродром
                         writer.Write($"Aerodrome{separator}{level.Key}{Environment.NewLine}", fs);
-                        ITransport aircraft = null;
-                        for (int i = 0; (aircraft = level.Value[i]) != null; i++)
+                        foreach (ITransport aircraft in level.Value)
                         {
-                            if (aircraft != null)
+                            if (aircraft.GetType().Name == "Aircraft")
                             {
                                 //если место не пустое
-                                //Записываем тип машины
-                                if (aircraft.GetType().Name == "Aircraft")
-                                {
-                                    writer.Write($"Aircraft{separator}", fs);
-                                }
-                                if (aircraft.GetType().Name == "Airbus")
-                                {
-                                    writer.Write($"Airbus{separator}", fs);
-                                }
-                                //Записываемые параметры
-                                writer.Write(aircraft + Environment.NewLine, fs);
+                                //Записываем тип самолёта
+                                writer.Write($"Aircraft{separator}", fs);
                             }
+                            if (aircraft.GetType().Name == "Airbus")
+                            {
+                                writer.Write($"Airbus{separator}", fs);
+                            }
+                            //Записываемые параметры
+                            writer.Write(aircraft + Environment.NewLine, fs);                        
                         }
                     }
                 }

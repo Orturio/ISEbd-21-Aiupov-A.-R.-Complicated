@@ -1,9 +1,11 @@
 ﻿using System.Drawing;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace DrawAirplan
 {
-    public class Airbus : Aircraft
+    public class Airbus : Aircraft, IEquatable<Airbus>, IComparable<Airbus>, IEnumerator<object>, IEnumerable<object>
     {
         public Color DopColor { private set; get; }
 
@@ -12,6 +14,14 @@ namespace DrawAirplan
         public int PortholeCount { private set; get; }
 
         public string PortholeForm { private set; get; }
+
+        private int _currentIndex = -1;
+
+        public new List<Object> objectProperties = new List<Object>();
+
+        public new object Current => objectProperties[_currentIndex];
+
+        object IEnumerator<Object>.Current => objectProperties[_currentIndex];
 
         public Airbus(int maxSpeed, float weight, Color mainColor, Color dopColor, int PortholeCount, string portholeForm) :
             base(maxSpeed, weight, mainColor, 220, 100)
@@ -32,6 +42,12 @@ namespace DrawAirplan
             {
                 Portholes = new DrawPortholeTriangle(PortholeCount);
             }
+            objectProperties.Add(MaxSpeed);
+            objectProperties.Add(Weight);
+            objectProperties.Add(MainColor);
+            objectProperties.Add(DopColor);
+            objectProperties.Add(PortholeCount);
+            objectProperties.Add(portholeForm);
         }
 
         public Airbus(string info) : base(info)
@@ -58,6 +74,11 @@ namespace DrawAirplan
                 {
                     Portholes = new DrawPortholeTriangle(PortholeCount);
                 }
+                objectProperties.Add(MaxSpeed);
+                objectProperties.Add(Weight);
+                objectProperties.Add(MainColor);
+                objectProperties.Add(DopColor);
+                objectProperties.Add(PortholeCount);               
             }
         }
 
@@ -99,6 +120,104 @@ namespace DrawAirplan
         public override string ToString()
         {
             return $"{base.ToString()}{separator}{DopColor.Name}{separator}{PortholeCount}{separator}{PortholeForm}";
+        }
+
+        public bool Equals(Airbus other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            if (GetType().Name != other.GetType().Name)
+            {
+                return false;
+            }
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return false;
+            }
+            if (Weight != other.Weight)
+            {
+                return false;
+            }
+            if (MainColor != other.MainColor)
+            {
+                return false;
+            }
+            if (DopColor != other.DopColor)
+            {
+                return false;
+            }
+            if (PortholeCount != other.PortholeCount)
+            {
+                return false;
+            }
+            if (PortholeForm != other.PortholeForm)
+            {
+                return false;
+            }   
+            return true;
+        }
+
+        public override bool Equals(Object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            if (!(obj is Airbus carObj))
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(carObj);
+            }
+        }
+
+        public int CompareTo(Airbus a)
+        {
+            var res = base.CompareTo(a);
+            if (res != 0)
+            {
+                return res;
+            }
+            if (DopColor != a.DopColor)
+            {
+                return DopColor.Name.CompareTo(a.DopColor.Name);
+            }
+            if (PortholeCount != a.PortholeCount)
+            {
+                return PortholeCount.CompareTo(a.PortholeCount);
+            }
+            if (PortholeForm != a.PortholeForm)
+            {
+                return PortholeForm.CompareTo(a.PortholeForm);
+            }           
+            return 0;
+        }
+
+        public new void Dispose() { }
+
+        public new bool MoveNext()
+        {
+            _currentIndex++;
+            return _currentIndex < 7;
+        }
+
+        public new void Reset()
+        {
+            _currentIndex = -1;
+        }
+
+        public new IEnumerator<object> GetEnumerator()
+        {
+            return (IEnumerator<object>)objectProperties;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }
